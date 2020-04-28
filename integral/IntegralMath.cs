@@ -86,5 +86,51 @@ namespace integral
 
             return res;
         }
+
+        public double pTrap(double a, double b, double h, Func<double, double> func)
+        {
+            if (h < 0.0)
+            {
+                throw new ArgumentException();
+            }
+
+            if (h > 1.0)
+            {
+                throw new ArgumentException();
+            }
+
+            if ((h < 0.000001) && (h != 0.0))
+            {
+                throw new ArgumentException();
+            }
+
+            if (a >= b)
+            {
+                throw new ArgumentException();
+            }
+
+            double sum_x = 0.0;
+
+            if (h != 0.0)
+            {
+                int n = Convert.ToInt32((b - a) / h);
+                double[] buf = new double[n];
+
+                Parallel.For(1, n, i =>
+                {
+                    buf[i] = func(a + i * h);
+                });
+
+                for (int i = 1; i < n; i++)
+                {
+                    sum_x += buf[i];
+                }
+
+                sum_x += (func(a) + func(b)) / 2.0;
+                sum_x *= h;
+            }
+
+            return sum_x;
+        }
     }
 }
