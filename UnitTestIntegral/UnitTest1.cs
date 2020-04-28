@@ -26,7 +26,7 @@ namespace UnitTestIntegral
             Assert.AreEqual(correct_res, res, 0.01);
         }
 
-        //проверка на точность метода траеций
+        //проверка на точность метода трапеций
         [TestMethod]
         public void TrapMethod_2X_400Returned()
         {
@@ -222,6 +222,83 @@ namespace UnitTestIntegral
             //act
             IntegralMath math = new IntegralMath();
             double res = math.pTrap(a, b, h, func);
+        }
+
+
+        /*тесты для парралельного варианта метода Симпсона*/
+
+        // очень маленький шаг для метода Симпсона
+
+        [TestMethod]
+
+        [ExpectedException(typeof(ArgumentException))]
+        public void TooShortStep_Sims_Exception()
+        {
+            //assert 
+            Func<double, double> func = x => x * x;
+            double a = 1;
+            double b = 10000;
+            double h = 0.0000001;
+
+            //act
+            IMath math = new IntegralMath();
+            double res = math.Sims(a, b, h, func);
+        }
+
+        // очень маленький шаг для параллельного метода Симпсона
+
+        [TestMethod]
+
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParallelTooShortStep_Sims_Exception()
+        {
+            //assert 
+            Func<double, double> func = x => x * x;
+            double a = 1;
+            double b = 10000;
+            double h = 0.0000001;
+
+            //act
+            IntegralMath math = new IntegralMath();
+            double res = math.pSims(a, b, h, func);
+        }
+
+        //проверка на результат параллельного метода Симпсона
+
+        [TestMethod]
+        public void ParallelSimsMethod_2X_400Returned()
+        {
+            //assert 
+            Func<double, double> func = x => 2 * x;
+            double a = 0;
+            double b = 20;
+            double h = 0.001;
+            double correct_res = 400;
+
+            //act
+            IntegralMath math = new IntegralMath();
+            double res = math.pSims(a, b, h, func);
+
+            //arrange
+            Assert.AreEqual(correct_res, res, 0.001);
+        }
+
+        // правильность введенных пределов интегрирования
+        // для параллельного метода Симсона
+        [TestMethod]
+
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParallelMixedUpLimits_Sims_Exception()
+        {
+            //assert 
+            Func<double, double> func = x => x * x;
+            double a = 20;
+            double b = -20;
+            double h = 0.001;
+
+            //act
+            IntegralMath math = new IntegralMath();
+            double res = math.pSims(a, b, h, func);
         }
     }
 }
