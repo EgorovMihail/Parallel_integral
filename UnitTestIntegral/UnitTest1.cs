@@ -47,7 +47,6 @@ namespace UnitTestIntegral
         }
 
         //проверка на точность метода симпсона
-
         [TestMethod]
         public void SimsMethod_XmultiplyX_2666Returned()
         {
@@ -68,7 +67,6 @@ namespace UnitTestIntegral
         }
 
         //проверка на точность метода симпсона
-
         [TestMethod]
         public void SimsMethod_2X_400Returned()
         {
@@ -122,7 +120,6 @@ namespace UnitTestIntegral
         }
 
         // правильность введенных пределов интегрирования для метода Симсона
-
         [TestMethod]
 
         [ExpectedException(typeof(ArgumentException))]
@@ -140,7 +137,6 @@ namespace UnitTestIntegral
         }
 
         // правильность введенных пределов интегрирования для метода трапеций
-
         [TestMethod]
 
         [ExpectedException(typeof(ArgumentException))]
@@ -157,8 +153,7 @@ namespace UnitTestIntegral
             double res = math.Trap(a, b, h, func);
         }
 
-        // очень маленький шаг для метода Трапеций
-
+        // очень маленький шаг для метода трапеций
         [TestMethod]
 
         [ExpectedException(typeof(ArgumentException))]
@@ -173,6 +168,23 @@ namespace UnitTestIntegral
             //act
             IMath math = new IntegralMath();
             double res = math.Trap(a, b, h, func);
+        }
+
+        // очень маленький шаг для параллельного метода трапеций
+        [TestMethod]
+
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParallelTooShortStep_Trap_Exception()
+        {
+            //assert 
+            Func<double, double> func = x => x * x;
+            double a = 1;
+            double b = 10000;
+            double h = 0.0000001;
+
+            //act
+            IntegralMath math = new IntegralMath();
+            double res = math.pTrap(a, b, h, func);
         }
     }
 }
