@@ -186,5 +186,24 @@ namespace UnitTestIntegral
             IntegralMath math = new IntegralMath();
             double res = math.pTrap(a, b, h, func);
         }
+
+        //проверка на результат параллельного метода траеций
+        [TestMethod]
+        public void ParallelTrapMethod_2X_400Returned()
+        {
+            //assert 
+            Func<double, double> func = x => x * 2;
+            double a = 0;
+            double b = 20;
+            double h = 0.001;
+            double correct_res = 400.0;
+
+            //act
+            IntegralMath math = new IntegralMath();
+            double res = math.pTrap(a, b, h, func);
+
+            //arrange
+            Assert.AreEqual(correct_res, res, 0.001);
+        }
     }
 }
