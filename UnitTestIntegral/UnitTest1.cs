@@ -187,7 +187,7 @@ namespace UnitTestIntegral
             double res = math.pTrap(a, b, h, func);
         }
 
-        //проверка на результат параллельного метода траеций
+        //проверка на результат параллельного метода трапеций
         [TestMethod]
         public void ParallelTrapMethod_2X_400Returned()
         {
@@ -204,6 +204,24 @@ namespace UnitTestIntegral
 
             //arrange
             Assert.AreEqual(correct_res, res, 0.001);
+        }
+
+        // правильность введенных пределов интегрирования
+        // для параллельного метода Трапеций
+        [TestMethod]
+
+        [ExpectedException(typeof(ArgumentException))]
+        public void ParallelMixedUpLimits_Trap_Exception()
+        {
+            //assert 
+            Func<double, double> func = x => x * x;
+            double a = 20;
+            double b = -20;
+            double h = 0.001;
+
+            //act
+            IntegralMath math = new IntegralMath();
+            double res = math.pTrap(a, b, h, func);
         }
     }
 }
