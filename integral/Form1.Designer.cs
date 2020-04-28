@@ -376,7 +376,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "integral__Form";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Text = "Integrals (Егоров, Журавлев 3-46 )";
+            this.Text = "Parralel Integrals (Егоров, Журавлев 3-46 )";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.integral__Form_Load);
             this.groupBox1.ResumeLayout(false);
