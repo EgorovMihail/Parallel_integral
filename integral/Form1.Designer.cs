@@ -92,6 +92,7 @@
             this.border__a.Location = new System.Drawing.Point(120, 58);
             this.border__a.Margin = new System.Windows.Forms.Padding(4);
             this.border__a.Name = "border__a";
+            this.border__a.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.border__a.Size = new System.Drawing.Size(110, 26);
             this.border__a.TabIndex = 2;
             this.border__a.TextChanged += new System.EventHandler(this.border__b_TextChanged);
@@ -102,6 +103,7 @@
             this.border__b.Location = new System.Drawing.Point(120, 24);
             this.border__b.Margin = new System.Windows.Forms.Padding(4);
             this.border__b.Name = "border__b";
+            this.border__b.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.border__b.Size = new System.Drawing.Size(110, 26);
             this.border__b.TabIndex = 3;
             this.border__b.TextChanged += new System.EventHandler(this.border__a_TextChanged_1);
@@ -150,6 +152,7 @@
             this.step_in.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.step_in.Location = new System.Drawing.Point(120, 91);
             this.step_in.Name = "step_in";
+            this.step_in.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.step_in.Size = new System.Drawing.Size(110, 26);
             this.step_in.TabIndex = 6;
             this.step_in.TextChanged += new System.EventHandler(this.textBox1_TextChanged_2);
