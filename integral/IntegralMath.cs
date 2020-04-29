@@ -122,13 +122,7 @@ namespace integral
                     buf[i] = func(a + i * h);
                 });
 
-                for (int i = 1; i < n; i++)
-                {
-                    sum_x += buf[i];
-                }
-
-                sum_x += (func(a) + func(b)) / 2.0;
-                sum_x *= h;
+                sum_x = h * (buf.AsParallel().Sum(X => X) + (func(a) + func(b)) / 2.0);
             }
 
             return sum_x;
@@ -157,7 +151,6 @@ namespace integral
                 throw new ArgumentException();
             }
 
-            double sum = 0.0;
             double res = 0.0;
 
             if (h != 0.0)
@@ -175,12 +168,7 @@ namespace integral
                     else { buf[i] = 4.0 * func(x[i]); }
                 });
 
-                for (int i = 0; i < m; i++)
-                {
-                    sum += buf[i];
-                }
-
-                res = h / 3.0 * (func(A) + func(B) + sum);
+                res = h / 3.0 * (func(A) + func(B) + buf.AsParallel().Sum(X => X));
             }
 
             return res;
